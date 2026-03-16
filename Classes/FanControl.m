@@ -216,12 +216,21 @@ NSUserDefaults *defaults;
 	[[sliderCell dataCell] setControlSize:NSControlSizeSmall];
 	[self changeMenu:nil];
 	
-	//seting toolbar image
-    menu_image = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"smc" ofType:@"png"]];
-    menu_image_alt  = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"smcover" ofType:@"png"]];
-    if ([menu_image respondsToSelector:@selector(setTemplate:)]) {
-        [menu_image setTemplate:YES];
-        [menu_image_alt setTemplate:YES];
+	//seting toolbar image — prefer SF Symbol on macOS 11+, fall back to PNG
+    if (@available(macOS 11.0, *)) {
+        NSImage *fanIcon = [NSImage imageWithSystemSymbolName:@"fan.fill" accessibilityDescription:@"Fan Control"];
+        NSImageSymbolConfiguration *config = [NSImageSymbolConfiguration configurationWithPointSize:14 weight:NSFontWeightRegular];
+        fanIcon = [fanIcon imageWithSymbolConfiguration:config];
+        [fanIcon setTemplate:YES];
+        menu_image = fanIcon;
+        menu_image_alt = fanIcon;
+    } else {
+        menu_image = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"smc" ofType:@"png"]];
+        menu_image_alt  = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"smcover" ofType:@"png"]];
+        if ([menu_image respondsToSelector:@selector(setTemplate:)]) {
+            [menu_image setTemplate:YES];
+            [menu_image_alt setTemplate:YES];
+        }
     }
 
 	//add timer for reading to RunLoop — use slow interval for icon-only mode
@@ -241,6 +250,12 @@ NSUserDefaults *defaults;
     //autostart
     [[NSUserDefaults standardUserDefaults] setValue:@([self isInAutoStart]) forKey:PREF_AUTOSTART_ENABLED];
     [[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(readFanData:) name:@"AppleInterfaceThemeChangedNotification" object:nil];
+
+    // Modernize preferences window — transparent titlebar, follow system appearance
+    if (mainwindow) {
+        [(NSWindow *)mainwindow setTitlebarAppearsTransparent:YES];
+        [(NSWindow *)mainwindow setTitleVisibility:NSWindowTitleHidden];
+    }
 
 }
 
@@ -414,17 +429,22 @@ NSUserDefaults *defaults;
     NSMutableAttributedString *s_status = nil;
     NSMutableParagraphStyle *paragraphStyle = nil;
     
-    NSColor *menuColor = (NSColor*)[NSKeyedUnarchiver unarchivedObjectOfClass:[NSColor class] fromData:[defaults objectForKey:PREF_MENU_TEXTCOLOR] error:nil];
+    NSColor *menuColor = nil;
     BOOL setColor = NO;
-    if (!([[menuColor colorUsingColorSpaceName:
-              NSCalibratedWhiteColorSpace] whiteComponent] == 0.0) || ![statusItem respondsToSelector:@selector(button)]) setColor = YES;
-    
-    
-    NSString *osxMode = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
-    
-    if (osxMode && !setColor) {
-        menuColor = [NSColor whiteColor];
+    if (@available(macOS 10.14, *)) {
+        // Use system label color that automatically adapts to dark/light mode
+        menuColor = [NSColor labelColor];
         setColor = YES;
+    } else {
+        menuColor = (NSColor*)[NSKeyedUnarchiver unarchivedObjectOfClass:[NSColor class] fromData:[defaults objectForKey:PREF_MENU_TEXTCOLOR] error:nil];
+        if (!([[menuColor colorUsingColorSpaceName:
+                  NSCalibratedWhiteColorSpace] whiteComponent] == 0.0) || ![statusItem respondsToSelector:@selector(button)]) setColor = YES;
+
+        NSString *osxMode = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
+        if (osxMode && !setColor) {
+            menuColor = [NSColor whiteColor];
+            setColor = YES;
+        }
     }
     
     switch (menuBarSetting) {
@@ -445,7 +465,13 @@ NSUserDefaults *defaults;
             s_status=[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@%@",temp,add,fan]];
             paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
             [paragraphStyle setAlignment:NSLeftTextAlignment];
-            [s_status addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Lucida Grande" size:fsize] range:NSMakeRange(0,[s_status length])];
+            NSFont *menuFont;
+            if (@available(macOS 10.15, *)) {
+                menuFont = [NSFont monospacedSystemFontOfSize:fsize weight:NSFontWeightMedium];
+            } else {
+                menuFont = [NSFont systemFontOfSize:fsize];
+            }
+            [s_status addAttribute:NSFontAttributeName value:menuFont range:NSMakeRange(0,[s_status length])];
             [s_status addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,[s_status length])];
 
             if (setColor) [s_status addAttribute:NSForegroundColorAttributeName value:menuColor  range:NSMakeRange(0,[s_status length])];
@@ -483,7 +509,15 @@ NSUserDefaults *defaults;
         case 3:
             [statusItem setLength:46];
             s_status=[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",temp]];
-            [s_status addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Lucida Grande" size:12] range:NSMakeRange(0,[s_status length])];
+            {
+                NSFont *tempFont;
+                if (@available(macOS 10.15, *)) {
+                    tempFont = [NSFont monospacedSystemFontOfSize:12 weight:NSFontWeightMedium];
+                } else {
+                    tempFont = [NSFont systemFontOfSize:12];
+                }
+                [s_status addAttribute:NSFontAttributeName value:tempFont range:NSMakeRange(0,[s_status length])];
+            }
             if (setColor) [s_status addAttribute:NSForegroundColorAttributeName value:menuColor  range:NSMakeRange(0,[s_status length])];
             if ([statusItem respondsToSelector:@selector(button)]) {
                 [statusItem.button setAttributedTitle:s_status];
@@ -495,11 +529,19 @@ NSUserDefaults *defaults;
                 [statusItem setAlternateImage:nil];
             }
             break;
-            
+
         case 4:
             [statusItem setLength:65];
             s_status=[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",fan]];
-            [s_status addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Lucida Grande" size:12] range:NSMakeRange(0,[s_status length])];
+            {
+                NSFont *rpmFont;
+                if (@available(macOS 10.15, *)) {
+                    rpmFont = [NSFont monospacedSystemFontOfSize:12 weight:NSFontWeightMedium];
+                } else {
+                    rpmFont = [NSFont systemFontOfSize:12];
+                }
+                [s_status addAttribute:NSFontAttributeName value:rpmFont range:NSMakeRange(0,[s_status length])];
+            }
             if (setColor) [s_status addAttribute:NSForegroundColorAttributeName value:menuColor  range:NSMakeRange(0,[s_status length])];
             if ([statusItem respondsToSelector:@selector(button)]) {
                 [statusItem.button setAttributedTitle:s_status];
