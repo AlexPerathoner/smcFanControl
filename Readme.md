@@ -1,5 +1,7 @@
 # smcFanControl Community Edition
 
+**Homepage:** [wolffcatskyy.github.io/smcFanControl](https://wolffcatskyy.github.io/smcFanControl/)
+
 Community-maintained fork of [smcFanControl](https://github.com/hholtmann/smcFanControl) for Intel Macs.
 
 Set a minimum fan speed to keep your Mac running cooler. Will not let you go below Apple's defaults.

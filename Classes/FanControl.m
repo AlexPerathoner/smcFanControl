@@ -713,6 +713,10 @@ NSUserDefaults *defaults;
 #pragma mark **Helper-Methods**
 
 //just a helper to bringt update-info-window to the front
+-(IBAction)visitHomepage:(id)sender{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://wolffcatskyy.github.io/smcFanControl/"]];
+}
+
 - (IBAction)updateCheck:(id)sender{
     // TODO: Implement GitHub Releases-based update check
     NSAlert *alert = [[NSAlert alloc] init];

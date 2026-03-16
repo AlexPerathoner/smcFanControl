@@ -114,6 +114,7 @@
 
 - (IBAction)closePreferences:(id)sender;
 - (IBAction)savePreferences:(id)sender;
+-(IBAction)visitHomepage:(id)sender;
 - (IBAction)updateCheck:(id)sender;
 - (IBAction)resetSettings:(id)sender;
 
