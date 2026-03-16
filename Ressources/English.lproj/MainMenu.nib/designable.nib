@@ -834,17 +834,6 @@ POSSIBILITY OF SUCH DAMAGES.
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button id="379">
-                        <rect key="frame" x="121" y="23" width="66" height="37"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="paypal" imagePosition="above" alignment="center" borderStyle="border" inset="2" id="857">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="label"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="paypal:" target="212" id="389"/>
-                        </connections>
-                    </button>
                     <textField verticalHuggingPriority="750" id="384">
                         <rect key="frame" x="17" y="119" width="265" height="29"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -866,7 +855,7 @@ POSSIBILITY OF SUCH DAMAGES.
                     <textField verticalHuggingPriority="750" id="382">
                         <rect key="frame" x="17" y="59" width="265" height="52"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If you like this program, please consider a donation by clicking on the paypal image." id="860">
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="" id="860">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -898,14 +887,6 @@ POSSIBILITY OF SUCH DAMAGES.
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="401">
-                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                </menuItem>
-                <menuItem title="Donate" id="411">
-                    <connections>
-                        <action selector="paypal:" target="212" id="414"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="413">
                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                 </menuItem>
                 <menuItem title="Info &amp; Support" id="418">
@@ -1092,10 +1073,8 @@ be used.</string>
                 </subviews>
             </view>
         </window>
-        <customObject id="635" userLabel="SUUpdater" customClass="SUUpdater"/>
     </objects>
     <resources>
-        <image name="paypal" width="62" height="31"/>
         <image name="smcfancontrol_v2" width="128" height="128"/>
     </resources>
 </document>

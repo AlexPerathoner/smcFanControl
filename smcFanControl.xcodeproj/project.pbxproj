@@ -9,14 +9,11 @@
 /* Begin PBXBuildFile section */
 		89033CA70B80E1EB00FDAF43 /* F.A.Q.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 89033CA60B80E1EB00FDAF43 /* F.A.Q.rtf */; };
 		89148EA315E2543D00A073EE /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 89148EA115E2543D00A073EE /* NSFileManager+DirectoryLocations.m */; };
-		8916827A0AEBB14F00888535 /* StatusItemWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 891682790AEBB14F00888535 /* StatusItemWindow.m */; };
 		891683E90AEBD95B00888535 /* smcWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 891683E80AEBD95B00888535 /* smcWrapper.m */; };
-		8917FB860ADEECAD00443DA1 /* paypal.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8917FB850ADEECAD00443DA1 /* paypal.gif */; };
 		891DEF110B40736D001A7C32 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 891DEF100B40736D001A7C32 /* WebKit.framework */; };
 		8924ECFD15AC98380031730C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8924ECFC15AC98380031730C /* IOKit.framework */; };
 		8924ECFE15AC98880031730C /* smc.c in Sources */ = {isa = PBXBuildFile; fileRef = 89C053BC0ADAB7630037CA16 /* smc.c */; };
 		892A7F450B10B7700041B493 /* MachineDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 892A7F440B10B7700041B493 /* MachineDefaults.m */; };
-		8932CF2413D08551008BC447 /* SystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 8932CF2313D08551008BC447 /* SystemVersion.m */; };
 		893355FF1CA02F1A00388D5D /* smc.c in Sources */ = {isa = PBXBuildFile; fileRef = 89C053BC0ADAB7630037CA16 /* smc.c */; };
 		893506180B440255001BFBA5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 893506170B440255001BFBA5 /* Localizable.strings */; };
 		894A46610ADBD6CF008785F3 /* FanControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 894A46600ADBD6CF008785F3 /* FanControl.m */; };
@@ -32,9 +29,6 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		B5A4D43B293A62F90084C50B /* IOHIDSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A4D43A293A62F90084C50B /* IOHIDSensor.m */; };
-		B5F20EE127FBCC78002EFD11 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 895BDA390B8F8F42003CD894 /* Sparkle.framework */; };
-		B5F20EE227FBCC78002EFD11 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 895BDA390B8F8F42003CD894 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,16 +51,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B5F20EE327FBCC78002EFD11 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B5F20EE227FBCC78002EFD11 /* Sparkle.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -83,18 +67,13 @@
 		89033D900B80F61E00FDAF43 /* German */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = German; path = German.lproj/F.A.Q.rtf; sourceTree = "<group>"; };
 		89148EA115E2543D00A073EE /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		89148EA215E2543D00A073EE /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
-		891682780AEBB14F00888535 /* StatusItemWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusItemWindow.h; sourceTree = "<group>"; };
-		891682790AEBB14F00888535 /* StatusItemWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusItemWindow.m; sourceTree = "<group>"; };
 		891683E70AEBD95B00888535 /* smcWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = smcWrapper.h; sourceTree = "<group>"; };
 		891683E80AEBD95B00888535 /* smcWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = smcWrapper.m; sourceTree = "<group>"; };
-		8917FB850ADEECAD00443DA1 /* paypal.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = paypal.gif; sourceTree = "<group>"; };
 		891DEF100B40736D001A7C32 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		8924ECEE15AC96E70031730C /* smc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = smc; sourceTree = BUILT_PRODUCTS_DIR; };
 		8924ECFC15AC98380031730C /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		892A7F430B10B7700041B493 /* MachineDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachineDefaults.h; sourceTree = "<group>"; };
 		892A7F440B10B7700041B493 /* MachineDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MachineDefaults.m; sourceTree = "<group>"; };
-		8932CF2213D0850F008BC447 /* SystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemVersion.h; sourceTree = "<group>"; };
-		8932CF2313D08551008BC447 /* SystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemVersion.m; sourceTree = "<group>"; };
 		8932CFF813D08DC4008BC447 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Dutch; path = Dutch.lproj/F.A.Q.rtf; sourceTree = "<group>"; };
 		8932CFF913D08DD7008BC447 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Dutch; path = Dutch.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8932CFFA13D08DDF008BC447 /* Dutch */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Dutch; path = Dutch.lproj/MainMenu.nib; sourceTree = "<group>"; };
@@ -107,7 +86,6 @@
 		894DC9E30F8AA36F006A046F /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = Spanish; path = Spanish.lproj/F.A.Q.rtf; sourceTree = "<group>"; };
 		894DC9E60F8AA399006A046F /* Spanish */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Spanish; path = Spanish.lproj/Localizable.strings; sourceTree = "<group>"; };
 		89559A830BAC338400DBA37E /* smcover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smcover.png; sourceTree = "<group>"; };
-		895BDA390B8F8F42003CD894 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		897753AB1DB3D89D00595411 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8985F1580ADD0B5500F9EC46 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		8987FBD00B878B3900A5ED8E /* smc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smc.png; sourceTree = "<group>"; };
@@ -117,13 +95,10 @@
 		89C053BC0ADAB7630037CA16 /* smc.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = smc.c; sourceTree = "<group>"; };
 		89C053BD0ADAB7630037CA16 /* smc.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = smc.h; sourceTree = "<group>"; };
 		89E7D3640ADE819B000F67AB /* Machines.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Machines.plist; sourceTree = "<group>"; };
-		89FE24050B7F4C2B00D2713C /* paypal.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = paypal.gif; sourceTree = "<group>"; };
 		89FE24220B7F4CD300D2713C /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		89FE24280B7F4CE900D2713C /* German */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = German; path = German.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* smcFanControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = smcFanControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5A4D43A293A62F90084C50B /* IOHIDSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IOHIDSensor.m; sourceTree = "<group>"; };
-		B5E84C88293A65840067AEC2 /* IOHIDSensor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOHIDSensor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +114,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5F20EE127FBCC78002EFD11 /* Sparkle.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				894A494B0ADBEEF4008785F3 /* IOKit.framework in Frameworks */,
 				8985F1590ADD0B5500F9EC46 /* Security.framework in Frameworks */,
@@ -158,18 +132,12 @@
 				89148EA215E2543D00A073EE /* NSFileManager+DirectoryLocations.h */,
 				894A465F0ADBD6CF008785F3 /* FanControl.h */,
 				894A46600ADBD6CF008785F3 /* FanControl.m */,
-				891682780AEBB14F00888535 /* StatusItemWindow.h */,
-				891682790AEBB14F00888535 /* StatusItemWindow.m */,
 				891683E70AEBD95B00888535 /* smcWrapper.h */,
 				891683E80AEBD95B00888535 /* smcWrapper.m */,
 				89949E8B0AEEA37700077E93 /* Power.h */,
 				89949E8C0AEEA37700077E93 /* Power.m */,
 				892A7F430B10B7700041B493 /* MachineDefaults.h */,
 				892A7F440B10B7700041B493 /* MachineDefaults.m */,
-				8932CF2213D0850F008BC447 /* SystemVersion.h */,
-				8932CF2313D08551008BC447 /* SystemVersion.m */,
-				B5E84C88293A65840067AEC2 /* IOHIDSensor.h */,
-				B5A4D43A293A62F90084C50B /* IOHIDSensor.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -177,7 +145,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				895BDA390B8F8F42003CD894 /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -236,11 +203,9 @@
 				89033CA60B80E1EB00FDAF43 /* F.A.Q.rtf */,
 				89FE24210B7F4CD300D2713C /* MainMenu.nib */,
 				89B2431F0B7E351000CAD103 /* smcfancontrol_v2.icns */,
-				8917FB850ADEECAD00443DA1 /* paypal.gif */,
 				89E7D3640ADE819B000F67AB /* Machines.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				893506170B440255001BFBA5 /* Localizable.strings */,
-				89FE24050B7F4C2B00D2713C /* paypal.gif */,
 			);
 			name = Resources;
 			path = Ressources;
@@ -292,7 +257,6 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				895BDA550B8F90D3003CD894 /* CopyFiles */,
-				B5F20EE327FBCC78002EFD11 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -354,7 +318,6 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				89E7D3650ADE819B000F67AB /* Machines.plist in Resources */,
-				8917FB860ADEECAD00443DA1 /* paypal.gif in Resources */,
 				893506180B440255001BFBA5 /* Localizable.strings in Resources */,
 				89B243200B7E351000CAD103 /* smcfancontrol_v2.icns in Resources */,
 				89FE24230B7F4CD300D2713C /* MainMenu.nib in Resources */,
@@ -381,14 +344,11 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				894A46610ADBD6CF008785F3 /* FanControl.m in Sources */,
-				8916827A0AEBB14F00888535 /* StatusItemWindow.m in Sources */,
 				893355FF1CA02F1A00388D5D /* smc.c in Sources */,
 				891683E90AEBD95B00888535 /* smcWrapper.m in Sources */,
 				89949E8D0AEEA37700077E93 /* Power.m in Sources */,
 				892A7F450B10B7700041B493 /* MachineDefaults.m in Sources */,
-				8932CF2413D08551008BC447 /* SystemVersion.m in Sources */,
 				89148EA315E2543D00A073EE /* NSFileManager+DirectoryLocations.m in Sources */,
-				B5A4D43B293A62F90084C50B /* IOHIDSensor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

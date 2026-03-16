@@ -133,6 +133,7 @@
 - (IBAction) changeMenu:(id)sender;
 - (IBAction)menuSelect:(id)sender;
 - (void)menuNeedsUpdate:(NSMenu*)menu;
+- (void)updateTimerForDisplayMode:(int)mode;
 @end
 
 

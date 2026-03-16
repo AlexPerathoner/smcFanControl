@@ -224,11 +224,15 @@ NSUserDefaults *defaults;
         [menu_image_alt setTemplate:YES];
     }
 
-	//add timer for reading to RunLoop
-	_readTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(readFanData:) userInfo:nil repeats:YES];
-    if ([_readTimer respondsToSelector:@selector(setTolerance:)]) {
-        [_readTimer setTolerance:2.0];
-    }
+	//add timer for reading to RunLoop — use slow interval for icon-only mode
+	{
+		int initMode = [[defaults objectForKey:PREF_MENU_DISPLAYMODE] intValue];
+		NSTimeInterval interval = (initMode == 2) ? 60.0 : 4.0;
+		_readTimer = [NSTimer scheduledTimerWithTimeInterval:interval target:self selector:@selector(readFanData:) userInfo:nil repeats:YES];
+		if ([_readTimer respondsToSelector:@selector(setTolerance:)]) {
+			[_readTimer setTolerance:(initMode == 2) ? 10.0 : 2.0];
+		}
+	}
 	[_readTimer fire];
     
 	//autoapply settings if valid
@@ -352,17 +356,18 @@ NSUserDefaults *defaults;
             bNeedTemp = true;
             bNeedRpm = true;
             break;
-            
+
         case 2:
-            bNeedTemp = true;
-            bNeedRpm = true;
+            // Icon only — no SMC reads needed for display.
+            bNeedTemp = false;
+            bNeedRpm = false;
             break;
-            
+
         case 3:
             bNeedTemp = true;
             bNeedRpm = false;
             break;
-            
+
         case 4:
             bNeedTemp = false;
             bNeedRpm = true;
@@ -459,17 +464,17 @@ NSUserDefaults *defaults;
         }
             
         case 2:
-            // TODO: Big waste of energy to update this tooltip every X seconds when the user
-            // is unlikely to hover the smcFanControl icon over and over again.
+            // Icon only — show the icon with no text and no tooltip.
+            // No SMC reads are performed in this mode to minimize energy impact.
             [statusItem setLength:26];
             if ([statusItem respondsToSelector:@selector(button)]) {
                 [statusItem.button setTitle:nil];
-                [statusItem.button setToolTip:[NSString stringWithFormat:@"%@\n%@",temp,fan]];
+                [statusItem.button setToolTip:nil];
                 [statusItem.button setImage:menu_image];
                 [statusItem.button setAlternateImage:menu_image_alt];
             } else {
                 [statusItem setTitle:nil];
-                [statusItem setToolTip:[NSString stringWithFormat:@"%@\n%@",temp,fan]];
+                [statusItem setToolTip:nil];
                 [statusItem setImage:menu_image];
                 [statusItem setAlternateImage:menu_image_alt];
             }
@@ -525,6 +530,8 @@ NSUserDefaults *defaults;
 - (IBAction)closePreferences:(id)sender{
 	[mainwindow close];
 	[DefaultsController revert:sender];
+	// Restore timer interval in case user changed display mode then cancelled.
+	[self updateTimerForDisplayMode:[[defaults objectForKey:PREF_MENU_DISPLAYMODE] intValue]];
 }
 
 //set the new fan settings
@@ -607,12 +614,30 @@ NSUserDefaults *defaults;
 
 
 - (IBAction) changeMenu:(id)sender{
-	if ([[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:PREF_MENU_DISPLAYMODE] intValue]==2) {
+	int mode = [[[[NSUserDefaultsController sharedUserDefaultsController] values] valueForKey:PREF_MENU_DISPLAYMODE] intValue];
+	if (mode == 2) {
+		// Icon only — disable color selector and slow the polling timer to 60s.
 		[colorSelector setEnabled:NO];
+		[self updateTimerForDisplayMode:2];
 	} else {
 		[colorSelector setEnabled:YES];
+		[self updateTimerForDisplayMode:mode];
 	}
 
+}
+
+/// Adjust the polling timer interval based on the display mode.
+/// Icon-only mode (2) uses a 60-second interval since no data is displayed.
+/// All other modes use a 4-second interval to keep the menubar current.
+- (void)updateTimerForDisplayMode:(int)mode {
+	NSTimeInterval desired = (mode == 2) ? 60.0 : 4.0;
+	if (_readTimer && [_readTimer timeInterval] == desired) return;
+	[_readTimer invalidate];
+	_readTimer = [NSTimer scheduledTimerWithTimeInterval:desired target:self selector:@selector(readFanData:) userInfo:nil repeats:YES];
+	if ([_readTimer respondsToSelector:@selector(setTolerance:)]) {
+		[_readTimer setTolerance:(mode == 2) ? 10.0 : 2.0];
+	}
+	[_readTimer fire];
 }
 
 - (IBAction)menuSelect:(id)sender{
