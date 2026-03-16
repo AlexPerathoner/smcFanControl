@@ -714,7 +714,7 @@ NSUserDefaults *defaults;
 
 //just a helper to bringt update-info-window to the front
 -(IBAction)visitHomepage:(id)sender{
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://wolffcatskyy.github.io/smcFanControl/"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://wolffcatskyy.dev/smcfancontrol"]];
 }
 
 - (IBAction)updateCheck:(id)sender{
