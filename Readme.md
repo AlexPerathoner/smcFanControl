@@ -1,28 +1,57 @@
-# smcFanControl
+# smcFanControl Community Edition
 
-smcFanControl lets the user set a minimum speed for built-in fans. It allows you to increase your minimum fan speed to make your Intel Mac run cooler. In order to not damage your machine, smcFanControl does not let you set a minimum speed to a value below Apple's defaults.
+**Community-maintained fork of smcFanControl for Intel Macs**
 
-![My image](https://www.eidac.de/smc_screenshot.png)
+This is a community fork of [hholtmann/smcFanControl](https://github.com/hholtmann/smcFanControl) (2,494 stars), which was abandoned in December 2022. The goal is to keep smcFanControl working on Intel Macs, especially those running [OpenCore Legacy Patcher (OCLP)](https://dortania.github.io/OpenCore-Legacy-Patcher/) on unsupported macOS versions.
 
+smcFanControl lets you set a minimum speed for your Mac's built-in fans to keep it running cooler. It will not let you set fan speeds below Apple's defaults.
 
-## Installing it using Homebrew & Cask
+## What changed from upstream
 
-Make sure you have both [Homebrew](http://brew.sh/) and [Cask](https://caskroom.github.io/) installed. You'll find intructions to install both tools on their respective websites.
+- **Stripped Apple Silicon code** -- this fork is Intel-only
+- **Fixed 16 deprecated macOS APIs** -- OSSpinLock, IOMasterPort, NSAlert (old-style), NSArchiver/NSUnarchiver, and others
+- **Removed dead code** -- SystemVersion parsing, StatusItemWindow, donation prompts, Sparkle auto-updater framework
+- **Merged community PRs** -- #143 (SYMROOT fix), #146 (exit if no fans), #108 (floating-point fan speed for newer models)
 
-After installing Homebrew and Cask, run:
+## Requirements
 
+- Intel Mac (any model)
+- macOS 10.7 or higher (tested through macOS Sequoia via OCLP)
+
+## Building
+
+You can build with just Command Line Tools installed -- no full Xcode required.
+
+### GUI app
+
+```bash
+clang -fobjc-arc -arch x86_64 \
+  -mmacosx-version-min=10.13 \
+  -I./smc-command -I./Classes \
+  -framework Cocoa -framework IOKit -framework Security \
+  main.m smc-command/smc.c \
+  Classes/FanControl.m Classes/smcWrapper.m Classes/Power.m \
+  Classes/MachineDefaults.m Classes/NSFileManager+DirectoryLocations.m \
+  -o smcFanControl
 ```
-$ brew install --cask smcfancontrol
+
+This produces a standalone binary. To run as a menu bar app, assemble a `.app` bundle with the binary, Info.plist, and compiled `.nib` resources from the repo.
+
+### smc CLI tool
+
+A standalone command-line tool for reading SMC sensors and setting fan speeds is in `smc-command/`:
+
+```bash
+cd smc-command
+make
+sudo ./smc -l    # list all SMC keys
+sudo ./smc -f    # show fan speeds
 ```
 
-After that you'll be able to use Spotlight to launch smcFanControl normally. :-)
+## License
 
+GPL v2 (inherited from upstream).
 
-Requirements: Apple Silicon or Intel Mac / OS X 10.7 or higher 
+## Credits
 
-
-Compiled version: https://www.eidac.de/smcfancontrol/smcfancontrol_2_6.zip
-
-FAQ / More info: Found in project under "Ressources/*.lproj/F.A.Q.rtf" or included in above .zip
-
-License: GPL 2
+Original by [Hendrik Holtmann](https://github.com/hholtmann). Community fork maintained by [wolffcatskyy](https://github.com/wolffcatskyy).

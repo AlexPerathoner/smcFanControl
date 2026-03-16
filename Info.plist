@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>smcFanControl</string>
 	<key>CFBundleGetInfoString</key>
-	<string>smcFanControl 2.6, Hendrik Holtmann (GPL)</string>
+	<string>smcFanControl Community Edition 2.6.1, GPL. Original by Hendrik Holtmann, community fork by wolffcatskyy.</string>
 	<key>CFBundleIconFile</key>
 	<string>smcfancontrol_v2</string>
 	<key>CFBundleIdentifier</key>
