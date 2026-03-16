@@ -164,7 +164,6 @@ NSUserDefaults *defaults;
 			@0, PREF_MENU_DISPLAYMODE,
             @"TC0D",PREF_TEMPERATURE_SENSOR,
             @0, PREF_NUMBEROF_LAUNCHES,
-            @NO,PREF_DONATIONMESSAGE_DISPLAY,
 			[NSKeyedArchiver archivedDataWithRootObject:[NSColor blackColor] requiringSecureCoding:NO error:nil],PREF_MENU_TEXTCOLOR,
 			favorites,PREF_FAVORITES_ARRAY,
 	nil]];
@@ -255,6 +254,40 @@ NSUserDefaults *defaults;
     if (mainwindow) {
         [(NSWindow *)mainwindow setTitlebarAppearsTransparent:YES];
         [(NSWindow *)mainwindow setTitleVisibility:NSWindowTitleHidden];
+    }
+
+    // Hide donate text field left over in compiled nibs (feature removed in CE fork).
+    // The About window (nib id 377) has a text field (nib id 382) at y~59 that
+    // contained the old PayPal/donation message.  The English designable.nib was
+    // cleared to an empty string but localized nibs (DE/FR/NL/ES) still carry the
+    // text.  Walk all loaded windows, find the About panel, and hide the field.
+    for (NSWindow *win in [NSApp windows]) {
+        if (win == (NSWindow *)mainwindow) continue;  // skip preferences window
+        if (win == (NSWindow *)faqWindow) continue;    // skip FAQ window
+        if (win == (NSWindow *)newfavoritewindow) continue;
+        // The About window title varies by locale (About / Acerca de / A propos de /
+        // Informatie) but always contains "smcFanControl".
+        if (![[win title] containsString:@"smcFanControl"]) continue;
+        for (NSView *subview in [[win contentView] subviews]) {
+            if (![subview isKindOfClass:[NSTextField class]]) continue;
+            NSTextField *tf = (NSTextField *)subview;
+            NSString *text = [tf stringValue] ?: @"";
+            NSString *lower = [text lowercaseString];
+            // Match by donation keywords (covers all localizations) or by
+            // the field's characteristic position (y 50-70, height 40-60)
+            // which is consistent across every lproj nib.
+            BOOL hasDonateText = ([lower containsString:@"donat"] ||
+                                  [lower containsString:@"paypal"] ||
+                                  [lower containsString:@"spende"]);
+            BOOL isEmptyDonateField = (text.length == 0 &&
+                                       NSMinY(subview.frame) >= 50 &&
+                                       NSMinY(subview.frame) <= 70 &&
+                                       NSHeight(subview.frame) >= 40 &&
+                                       NSHeight(subview.frame) <= 60);
+            if (hasDonateText || isEmptyDonateField) {
+                [subview setHidden:YES];
+            }
+        }
     }
 
 }

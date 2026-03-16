@@ -16,7 +16,6 @@
 #define PREF_MENU_DISPLAYMODE @"MenuBar"
 #define PREF_TEMPERATURE_SENSOR @"TSensor"
 #define PREF_NUMBEROF_LAUNCHES @"NumLaunches"
-#define PREF_DONATIONMESSAGE_DISPLAY @"DonationMessageDisplay"
 #define PREF_MENU_TEXTCOLOR @"MenuColor"
 #define PREF_FAVORITES_ARRAY @"Favorites"
 
