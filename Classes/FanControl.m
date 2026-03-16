@@ -455,13 +455,13 @@ NSUserDefaults *defaults;
             if (menuBarSetting==0) {
                 add=@"\n";
                 fsize=9;
-                [statusItem setLength:53];
+                [statusItem setLength:73];
             } else {
                 add=@" ";
                 fsize=11;
-                [statusItem setLength:96];
+                [statusItem setLength:116];
             }
-            
+
             s_status=[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@%@",temp,add,fan]];
             paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
             [paragraphStyle setAlignment:NSLeftTextAlignment];
@@ -475,20 +475,19 @@ NSUserDefaults *defaults;
             [s_status addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0,[s_status length])];
 
             if (setColor) [s_status addAttribute:NSForegroundColorAttributeName value:menuColor  range:NSMakeRange(0,[s_status length])];
-            
-           
+
+
             if ([statusItem respondsToSelector:@selector(button)]) {
                 [statusItem.button setAttributedTitle:s_status];
-                [statusItem.button setImage:nil];
-                [statusItem.button setAlternateImage:nil];
+                [statusItem.button setImage:menu_image];
+                [statusItem.button setImagePosition:NSImageLeft];
             } else {
                 [statusItem setAttributedTitle:s_status];
-                [statusItem setImage:nil];
-                [statusItem setAlternateImage:nil];
+                [statusItem setImage:menu_image];
             }
             break;
         }
-            
+
         case 2:
             // Icon only — show the icon with no text and no tooltip.
             // No SMC reads are performed in this mode to minimize energy impact.
@@ -505,9 +504,9 @@ NSUserDefaults *defaults;
                 [statusItem setAlternateImage:menu_image_alt];
             }
             break;
-            
+
         case 3:
-            [statusItem setLength:46];
+            [statusItem setLength:66];
             s_status=[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",temp]];
             {
                 NSFont *tempFont;
@@ -521,17 +520,16 @@ NSUserDefaults *defaults;
             if (setColor) [s_status addAttribute:NSForegroundColorAttributeName value:menuColor  range:NSMakeRange(0,[s_status length])];
             if ([statusItem respondsToSelector:@selector(button)]) {
                 [statusItem.button setAttributedTitle:s_status];
-                [statusItem.button setImage:nil];
-                [statusItem.button setAlternateImage:nil];
+                [statusItem.button setImage:menu_image];
+                [statusItem.button setImagePosition:NSImageLeft];
             } else {
                 [statusItem setAttributedTitle:s_status];
-                [statusItem setImage:nil];
-                [statusItem setAlternateImage:nil];
+                [statusItem setImage:menu_image];
             }
             break;
 
         case 4:
-            [statusItem setLength:65];
+            [statusItem setLength:85];
             s_status=[[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@",fan]];
             {
                 NSFont *rpmFont;
@@ -545,12 +543,11 @@ NSUserDefaults *defaults;
             if (setColor) [s_status addAttribute:NSForegroundColorAttributeName value:menuColor  range:NSMakeRange(0,[s_status length])];
             if ([statusItem respondsToSelector:@selector(button)]) {
                 [statusItem.button setAttributedTitle:s_status];
-                [statusItem.button setImage:nil];
-                [statusItem.button setAlternateImage:nil];
+                [statusItem.button setImage:menu_image];
+                [statusItem.button setImagePosition:NSImageLeft];
             } else {
                 [statusItem setAttributedTitle:s_status];
-                [statusItem setImage:nil];
-                [statusItem setAlternateImage:nil];
+                [statusItem setImage:menu_image];
             }
             break;
     }
