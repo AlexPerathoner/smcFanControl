@@ -4,24 +4,6 @@
 
 Community-maintained fork of [smcFanControl](https://github.com/hholtmann/smcFanControl) for Intel Macs. Set a minimum fan speed to keep your Mac running cooler.
 
-## Community Edition (v2.6.2)
-
-This is a maintained fork of smcFanControl with bug fixes for Intel Macs.
-
-### Install via Homebrew (recommended)
-
-```bash
-brew tap wolffcatskyy/tap
-brew install --cask wolffcatskyy/tap/smcfancontrol
-```
-
-Installing via Homebrew bypasses macOS Gatekeeper, which blocks unsigned apps from being opened.
-
-### What's fixed
-
-- **Power management clamping bug** — Fixed an issue in FanControl.m where the power management system wasn't properly responding to fan speed changes. Setting a minimum fan speed now works reliably.
-- **Homebrew distribution** — Available as a Homebrew cask for easy installation without Gatekeeper workarounds.
-
 ## Install
 
 ```bash
@@ -31,9 +13,11 @@ brew install --cask smcfancontrol
 
 That's it. No Gatekeeper warnings, no right-click tricks.
 
-### Why Homebrew only?
+### Why Homebrew?
 
-macOS blocks apps downloaded from the internet that aren't signed with an Apple Developer certificate ($99/year). Homebrew strips the quarantine flag automatically during install, giving you a clean one-command experience without any security dialogs.
+macOS Gatekeeper blocks apps downloaded from the internet that aren't signed with an Apple Developer certificate ($99/year). When you try to open an unsigned app, macOS refuses with *"app can't be opened because Apple cannot check it for malicious software"* — and there's no "Open Anyway" button on first attempt.
+
+Homebrew bypasses this entirely by stripping the quarantine flag during install, giving you a clean one-command experience with no security dialogs or workarounds.
 
 ### Manual install (no Homebrew)
 
@@ -44,6 +28,14 @@ xattr -cr /Applications/smcFanControl.app
 ```
 
 This is required because the app is unsigned. Homebrew handles this for you automatically.
+
+## Bug Fixes
+
+### Power management fan clamping fix
+
+The original smcFanControl had a bug in `FanControl.m` where the power management handler would clamp fan speeds incorrectly on AC/battery transitions. When switching between power sources, the fan speed logic could override user-set minimums or fail to apply the correct speed, causing fans to not respond properly to manual adjustments.
+
+This fork fixes the clamping behavior so fan speeds are applied reliably regardless of power state changes.
 
 ## Features
 
@@ -60,6 +52,7 @@ A standalone `smc` binary for reading SMC sensors and fan speeds from the termin
 
 ## What Changed from Upstream
 
+- **Fixed power management clamping bug** — Fan speeds now apply reliably across AC/battery transitions
 - Stripped Apple Silicon code (Intel-only fork)
 - Fixed 16 deprecated macOS APIs
 - Removed Sparkle auto-updater framework (5.3 MB)
