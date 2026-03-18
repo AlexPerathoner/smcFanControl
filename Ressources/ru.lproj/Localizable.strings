@@ -1,0 +1,50 @@
+/* Russian translation */
+
+"Yes" = "Да";
+
+"No" = "Нет";
+
+"MainFan" = "Основной вентилятор";
+
+"Left Fan" = "Левый вентилятор";
+
+"Right Fan" = "Правый вентилятор";
+
+"smcFanControl has not been tested on this machine yet, but it should run if you follow the instructions. \n\nIf you choose to continue, please make sure you have no other FanControl-software running. Otherwise please quit, deinstall the other software, restart your machine and rerun smcFanControl!" = "smcFanControl не тестировался на этом устройстве, но должен работать, если вы будете следовать инструкциям. \n\nЕсли вы решите продолжить, убедитесь, что у вас не запущено другое ПО для управления вентиляторами. В противном случае закройте программу, удалите ее, перезагрузите компьютер и запустите smcFanControl снова!";
+
+"Continue" = "Продолжить";
+
+"Quit" = "Выход";
+
+"Alert!" = "Внимание!";
+
+"Do you want to reset smcFanControl to default settings? Fans will return to default speed." = "Вы хотите восстановить настройки smcFanControl по умолчанию?\nВентиляторы вернутся к стандартной скорости.";
+
+"Please shutdown your computer now to return to default fan settings." = "Пожалуйста, выключите компьютер, чтобы вернуться к настройкам вентиляторов по умолчанию.";
+
+"Reset Settings" = "Сбросить настройки";
+
+"Shutdown required" = "Требуется выключение";
+
+/* Sleep/Wake Fix */
+"Sleep/Wake Fix..." = "Исправление сна/пробуждения...";
+
+"Sleep/Wake Fix for Intel Macs" = "Исправление сна/пробуждения для Intel Mac";
+
+"Older Intel Macs can crash when waking from sleep due to macOS hibernation features designed for newer hardware. This fix disables hibernation and related features so your Mac sleeps and wakes reliably." = "Старые Intel Mac могут зависать при пробуждении из-за функций гибернации macOS, разработанных для нового оборудования. Это исправление отключает гибернацию и связанные функции, чтобы ваш Mac надежно засыпал и просыпался.";
+
+"No reboot required. Changes take effect immediately." = "Перезагрузка не требуется. Изменения вступят в силу немедленно.";
+
+"Fix Applied" = "Исправление применено";
+
+"Needs Fix" = "Требуется исправление";
+
+"Apply Fix" = "Применить исправление";
+
+"Restore Defaults" = "Восстановить по умолчанию";
+
+/* Menu items */
+"Quit smcFanControl CE" = "Выход из smcFanControl CE";
+
+/* Support */
+"Support on Ko-fi" = "Поддержать на Ko-fi";
