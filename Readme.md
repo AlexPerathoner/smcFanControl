@@ -14,7 +14,7 @@ Fans screaming at 100% on your OpenCore-patched Mac? Not anymore. smcFanControl 
 - Applies saved fan speeds via Launch Daemon before login screen
 - Zero overhead — runs once at boot, then exits
 
-Works on all OCLP-patched Macs running macOS Sonoma, Ventura, and Monterey.
+Works on all OCLP-patched Macs running supported macOS versions.
 
 👉 [How it works →](#oclp-boot-fan-control)
 
